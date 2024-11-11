@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/vehicle")
+@RequestMapping(value = "api/vehicle", produces = {"application/json", "application/xml"})
 public class VehicleController {
 
     private final VehicleService vehicleService;

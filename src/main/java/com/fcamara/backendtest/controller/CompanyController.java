@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/company")
+@RequestMapping(value = "api/company", produces = {"application/json", "application/xml"})
 public class CompanyController {
     private final CompanyService companyService;
 

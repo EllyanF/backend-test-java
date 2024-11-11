@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/parking-lots")
+@RequestMapping(value = "api/parking-lots", produces = {"application/json", "application/xml"})
 public class ParkingLotController {
     private final ParkingLotService service;
 
