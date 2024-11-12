@@ -6,6 +6,7 @@ import com.fcamara.backendtest.domain.enums.VehicleType;
 import com.fcamara.backendtest.dto.company.CompanyDTO;
 import com.fcamara.backendtest.dto.company.UpdateCompanyDTO;
 import com.fcamara.backendtest.repository.CompanyRepository;
+import org.jetbrains.annotations.NotNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -48,13 +49,12 @@ public class CompanyService {
         return companyRepository.save(company);
     }
 
-    @Transactional
     public void deleteCompany(long id) {
         companyRepository.deleteById(id);
     }
 
     @Transactional
-    public void updateParkingLot(Company company, VehicleType type, UpdateParkingLotOperators operator) {
+    public void updateParkingLot(@NotNull Company company, VehicleType type, UpdateParkingLotOperators operator) {
         company.getLotSpaces().updateLotSpaces(type, operator);
         companyRepository.save(company);
     }

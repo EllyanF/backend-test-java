@@ -1,13 +1,15 @@
 package com.fcamara.backendtest.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fcamara.backendtest.domain.company.Company;
 import com.fcamara.backendtest.domain.enums.SessionStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "ParkingSessions")
+@Entity
 @Table(name = "parking_session")
 @Getter
 @Setter
@@ -30,9 +32,12 @@ public class ParkingSession {
     private SessionStatus status;
 
     @Column(name = "entry_time")
+    @JsonFormat(pattern = "dd-mm-YYYY HH:mm:ss")
+    @CreationTimestamp
     private LocalDateTime entryTime;
 
     @Column(name = "exit_time")
+    @JsonFormat(pattern = "dd-mm-YYYY HH:mm:ss")
     private LocalDateTime exitTime;
 
     @PrePersist
@@ -40,10 +45,8 @@ public class ParkingSession {
         this.status = SessionStatus.ACTIVE;
     }
 
-    public ParkingSession (Vehicle vehicle, Company company, LocalDateTime entryTime, LocalDateTime exitTime) {
+    public ParkingSession(Vehicle vehicle, Company company) {
         this.vehicle = vehicle;
         this.company = company;
-        this.entryTime = entryTime;
-        this.exitTime = exitTime;
     }
 }
