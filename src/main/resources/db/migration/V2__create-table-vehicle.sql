@@ -2,7 +2,7 @@ CREATE TYPE vehicle_type AS ENUM ('CAR', 'MOTORCYCLE');
 
 CREATE CAST (varchar as vehicle_type) WITH INOUT AS IMPLICIT;
 
-CREATE TABLE vehicle(
+CREATE TABLE vehicles (
     id SERIAL PRIMARY KEY UNIQUE NOT NULL,
     brand TEXT NOT NULL,
     model TEXT NOT NULL,
