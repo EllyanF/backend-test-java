@@ -34,7 +34,3 @@ build/
 
 ### Env ###
 .env
-
-### RSA Keys ###
-/src/main/resources/public.key
-/src/main/resources/private.key

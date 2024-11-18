@@ -6,7 +6,7 @@ import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
 @Entity(name = "Companies")
-@Table(name = "companies")
+@Table(name = "company")
 @Getter
 @Setter
 @AllArgsConstructor
