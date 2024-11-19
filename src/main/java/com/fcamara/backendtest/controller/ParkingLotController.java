@@ -49,8 +49,8 @@ public class ParkingLotController {
     @GetMapping("/reports/{companyId}/hourly")
     public ResponseEntity<List<HourlyReportDTO>> getSessionsPerHour(
             @PathVariable Long companyId,
-            @RequestHeader @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
-            @RequestHeader @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate
     ) {
         return new ResponseEntity<>(service.getSessionCountByHour(companyId, startDate, endDate), HttpStatus.OK);
     }
