@@ -4,10 +4,11 @@ import com.fcamara.backendtest.domain.company.Company;
 import com.fcamara.backendtest.domain.enums.SessionStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "ParkingSessions")
+@Entity
 @Table(name = "parking_sessions")
 @Getter
 @Setter
@@ -30,6 +31,7 @@ public class ParkingSession {
     private SessionStatus status;
 
     @Column(name = "entry_time")
+    @CreationTimestamp
     private LocalDateTime entryTime;
 
     @Column(name = "exit_time")
@@ -40,10 +42,8 @@ public class ParkingSession {
         this.status = SessionStatus.ACTIVE;
     }
 
-    public ParkingSession (Vehicle vehicle, Company company, LocalDateTime entryTime, LocalDateTime exitTime) {
+    public ParkingSession (Vehicle vehicle, Company company) {
         this.vehicle = vehicle;
         this.company = company;
-        this.entryTime = entryTime;
-        this.exitTime = exitTime;
     }
 }

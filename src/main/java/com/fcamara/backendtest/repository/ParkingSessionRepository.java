@@ -4,11 +4,13 @@ import com.fcamara.backendtest.domain.ParkingSession;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface ParkingSessionRepository extends JpaRepository<ParkingSession, Long> {
     @Query("SELECT p FROM ParkingSession p WHERE p.company.id = :companyId " +
             "AND p.vehicle.id = :vehicleId and p.status = SessionStatus.ACTIVE ORDER BY p.entryTime ASC")
@@ -26,7 +28,9 @@ public interface ParkingSessionRepository extends JpaRepository<ParkingSession, 
             "OR ps.exitTime BETWEEN :startDate AND :endDate) " +
             "GROUP BY DATE(ps.entryTime), HOUR(ps.entryTime) " +
             "ORDER BY date ASC, hour ASC")
-    List<Object[]> findEntriesAndExitsGroupedByHour(@Param("companyId") Long companyId, @Param("startDate") LocalDateTime startDate,
-                                                    @Param("endDate") LocalDateTime endDate);
-
+    List<Object[]> findEntriesAndExitsGroupedByHour(
+            @Param("companyId") Long companyId,
+            @Param("startDate") LocalDateTime startDate,
+            @Param("endDate") LocalDateTime endDate
+    );
 }

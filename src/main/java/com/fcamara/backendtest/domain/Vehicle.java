@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
-@Entity(name = "Vehicles")
+@Entity
 @Table(name = "vehicles")
 @Getter
 @Setter
